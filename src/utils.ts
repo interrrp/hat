@@ -4,3 +4,11 @@ export function createJSONResponse(data: object, status = 200) {
     headers: { "Content-Type": "application/json" },
   });
 }
+
+export function didAttemptPathTraversal(url: string) {
+  return url.includes("..");
+}
+
+export function getFilePathFromURL(url: string) {
+  return url.split("/").slice(3).join("/");
+}

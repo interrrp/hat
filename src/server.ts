@@ -1,17 +1,20 @@
 import { config } from "./config.ts";
 import { info } from "./logger.ts";
-import { createJSONResponse } from "./utils.ts";
+import {
+  createJSONResponse,
+  didAttemptPathTraversal,
+  getFilePathFromURL,
+} from "./utils.ts";
 
 export async function handleRequest(
   req: Request,
 ): Promise<Response> {
   // Prevent path traversal
-  if (!config.allowPathTraversal && req.url.includes("..")) {
+  if (!config.allowPathTraversal && didAttemptPathTraversal(req.url)) {
     return createJSONResponse({ message: "Attempted path traversal" }, 400);
   }
 
-  const pathParts = req.url.split("/");
-  const path = pathParts.slice(3).join("/");
+  const path = getFilePathFromURL(req.url);
   info(`${req.method} /${path}`);
 
   try {
