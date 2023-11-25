@@ -14,7 +14,7 @@ const defaultConfig = {
   allowPathTraversal: false,
 };
 
-async function loadConfigFromYAMLFile(path: string) {
+async function loadConfigFromYAMLFile(path: string): Promise<Config> {
   const yaml = await Deno.readTextFile(path);
   return {
     ...defaultConfig,

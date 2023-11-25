@@ -4,5 +4,10 @@
   },
   "tasks": {
     "start": "deno run -A src/main.ts"
+  },
+  "lint": {
+    "rules": {
+      "include": ["explicit-function-return-type"]
+    }
   }
 }
