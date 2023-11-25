@@ -1,6 +1,6 @@
 import { parse as parseYAML } from "std/yaml/mod.ts";
 
-type Config = {
+export type Config = {
   host: string;
   port: number;
 
@@ -14,10 +14,12 @@ const defaultConfig = {
   allowPathTraversal: false,
 };
 
-export async function loadConfigFromYAMLFile(path: string) {
+async function loadConfigFromYAMLFile(path: string) {
   const yaml = await Deno.readTextFile(path);
   return {
     ...defaultConfig,
     ...parseYAML(yaml) as object,
   } as Config;
 }
+
+export const config = await loadConfigFromYAMLFile("./hat.yaml");
