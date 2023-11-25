@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "std/": "https://deno.land/std@0.207.0/"
+  },
+  "tasks": {
+    "start": "deno run -A src/main.ts"
+  }
+}
