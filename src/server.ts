@@ -9,7 +9,6 @@ import {
 export async function handleRequest(
   req: Request,
 ): Promise<Response> {
-  // Prevent path traversal
   if (!config.allowPathTraversal && didAttemptPathTraversal(req.url)) {
     return createJSONResponse({ message: "Attempted path traversal" }, 400);
   }
