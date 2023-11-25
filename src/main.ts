@@ -1,9 +1,12 @@
+import { loadConfigFromYAMLFile } from "./config.ts";
 import { info } from "./logger.ts";
 import { createJSONResponse } from "./utils.ts";
 
-Deno.serve(async (req) => {
+const config = await loadConfigFromYAMLFile("./hat.yaml");
+
+Deno.serve({ hostname: config.host, port: config.port }, async (req) => {
   // Prevent path traversal
-  if (req.url.includes("..")) {
+  if (!config.allowPathTraversal && req.url.includes("..")) {
     return createJSONResponse({ message: "Attempted path traversal" }, 400);
   }
 
