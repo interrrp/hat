@@ -1,5 +1,8 @@
-function createLogFunction(level: string, color: string) {
-  return function (message: string) {
+function createLogFunction(
+  level: string,
+  color: string,
+): (message: string) => void {
+  return function (message: string): void {
     console.log(
       `%c${level}%c ${message}`,
       `color: ${color}; font-weight: bold;`,
