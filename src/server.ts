@@ -13,7 +13,7 @@ export async function handleRequest(
     return createJSONResponse({ message: "Attempted path traversal" }, 400);
   }
 
-  const path = getFilePathFromURL(req.url);
+  const path = getFilePathFromURL(req.url, config.basePath);
   info(`${req.method} /${path}`);
 
   try {

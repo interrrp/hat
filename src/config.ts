@@ -4,6 +4,7 @@ export type Config = {
   host: string;
   port: number;
 
+  basePath: string;
   allowPathTraversal: boolean;
 };
 
@@ -11,6 +12,7 @@ const defaultConfig = {
   host: "localhost",
   port: 8080,
 
+  basePath: Deno.cwd(),
   allowPathTraversal: false,
 };
 
